@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player;
+    protected GameObject player;
+    protected Rigidbody2D rB;
     protected float speed = 5;
+    protected float magnitude = 100;
     protected float damage;
     protected float health;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
