@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeekerEnemy : Enemy
+public class TankEnemy : Enemy
 {
     void Start()
     {
-        speed = 4;
+        speed = 2;
         player = GameObject.Find("Player");
         rB = GetComponent<Rigidbody2D>();
     }

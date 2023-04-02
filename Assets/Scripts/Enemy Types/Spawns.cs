@@ -29,9 +29,7 @@ public class Spawns : Enemy
         }
         if (aggroed)
         {
-            Vector2 toPlayer = (player.transform.position - transform.position).normalized;
-            rB.AddForce(toPlayer * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
-            transform.LookAt(player.transform, Vector3.up);
+            base.movement();
         }
     }
 }

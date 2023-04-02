@@ -11,5 +11,10 @@ public abstract class Enemy : MonoBehaviour
     protected float damage;
     protected float health;
     // Start is called before the first frame update
-    protected abstract void movement();
+    protected virtual void movement()
+    {
+        Vector2 toPlayer = (player.transform.position - transform.position).normalized;
+        rB.AddForce(toPlayer * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
+        transform.LookAt(player.transform, Vector3.up);
+    }
 }
