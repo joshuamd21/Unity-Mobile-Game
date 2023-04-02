@@ -34,5 +34,6 @@ public class RangedEnemy : Enemy
         {
             rB.AddForce(-toPlayer * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
         }
+        transform.LookAt(player.transform, Vector3.up);
     }
 }
