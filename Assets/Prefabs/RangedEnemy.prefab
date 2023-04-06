@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6196575365714567501}
   m_Layer: 0
   m_Name: RangedEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0690881bd680fd244bb7ab36d3a6f6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPooled: {fileID: 1026031012342453620, guid: 279da3cbfe4f8ff49863e94e708ce4de, type: 3}

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    [SerializeField]
     private float speed;
     private Rigidbody2D rB;
     private float magnitude = 100;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 12;
+        speed = 4;
         rB = GetComponent<Rigidbody2D>();
     }
 
@@ -22,7 +23,6 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("bullet collided");
         gameObject.SetActive(false);
     }
 }
