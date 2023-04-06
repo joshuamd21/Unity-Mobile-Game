@@ -24,6 +24,7 @@ public class RangedEnemy : Enemy
 
     protected override void movement()
     {
+        transform.right = player.transform.position - transform.position;
         float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
         Vector2 toPlayer = (player.transform.position - transform.position).normalized;
         if (distToPlayer > targetDistance)
@@ -34,6 +35,5 @@ public class RangedEnemy : Enemy
         {
             rB.AddForce(-toPlayer * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
         }
-        transform.LookAt(player.transform, Vector3.up);
     }
 }

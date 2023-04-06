@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 1764663784}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1106,17 +1106,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1026031012342453609, guid: 279da3cbfe4f8ff49863e94e708ce4de, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1026031012342453620, guid: 279da3cbfe4f8ff49863e94e708ce4de, type: 3}
       propertyPath: m_Name
       value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026031012342453620, guid: 279da3cbfe4f8ff49863e94e708ce4de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 279da3cbfe4f8ff49863e94e708ce4de, type: 3}
