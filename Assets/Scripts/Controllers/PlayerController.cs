@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private float radius;
     private Rigidbody2D rB;
     public GameObject bulletPooled;
+    private bool allowFire = true;
+    private float rateOfFire = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +39,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovePlayer();
-        if (Input.GetMouseButtonDown(0))
+        if (allowFire && Input.GetMouseButton(0))
         {
-            FireBullet();
+            StartCoroutine("FireBullet");
         }
     }
     public GameObject GetPooledObject()
@@ -73,8 +75,9 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private void FireBullet()
+    private IEnumerator FireBullet()
     {
+        allowFire = false;
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         worldPosition.z = 0;
@@ -86,5 +89,7 @@ public class PlayerController : MonoBehaviour
             bullet.transform.right = toMouse;
             bullet.transform.position = transform.position + toMouse * radius;
         }
+        yield return new WaitForSeconds(rateOfFire);
+        allowFire = true;
     }
 }
