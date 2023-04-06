@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private List<GameObject> bullets;
     private GameObject bulletHolder;
     private int maxBullets = 20;
+    private float maxHealth;
     private float health;
     private float damage;
     private float speed = 10;
@@ -18,13 +20,24 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPooled;
     private bool allowFire = true;
     private float rateOfFire = 0.5f;
-
+    [SerializeField]
+    private Slider healthbar;
+    [SerializeField]
+    private TextMeshProUGUI healthText;
     // Start is called before the first frame update
     void Start()
     {
+
+        health = 20;
+        maxHealth = 20;
+        healthbar.maxValue = maxHealth;
+        healthbar.value = health;
+        healthText.text = health + "/" + maxHealth;
+
         rB = GetComponent<Rigidbody2D>();
-        bulletHolder = GameObject.Find("BulletHolder");
+
         // Loop through list of pooled objects,deactivating them and adding them to the list 
+        bulletHolder = GameObject.Find("BulletHolder");
         bullets = new List<GameObject>();
         for (int i = 0; i < maxBullets; i++)
         {
@@ -91,5 +104,15 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(rateOfFire);
         allowFire = true;
+    }
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+        healthbar.value = health;
+        healthText.text = health + "/" + maxHealth;
+    }
+    public void setHealth()
+    {
+
     }
 }

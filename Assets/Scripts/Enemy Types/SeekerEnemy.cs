@@ -6,6 +6,8 @@ public class SeekerEnemy : Enemy
 {
     void Start()
     {
+        damage = 5;
+        health = 10;
         speed = 4;
         player = GameObject.Find("Player");
         rB = GetComponent<Rigidbody2D>();

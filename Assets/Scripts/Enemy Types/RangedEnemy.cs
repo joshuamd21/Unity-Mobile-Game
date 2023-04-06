@@ -17,6 +17,8 @@ public class RangedEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        damage = 5;
+        health = 10;
         speed = 6;
         targetDistance = 7;
         slack = 0.5f;
