@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private List<GameObject> bullets;
     private GameObject bulletHolder;
+    public GameObject bulletPooled;
     private int maxBullets = 20;
     private float maxHealth;
     private float health;
@@ -14,25 +15,20 @@ public class PlayerController : MonoBehaviour
     private float speed = 10;
     private float maginitude = 100;
     private float rotationSpeed = 360;
-    [SerializeField]
     private float radius;
     private Rigidbody2D rB;
-    public GameObject bulletPooled;
     private bool allowFire = true;
     private float rateOfFire = 0.5f;
     [SerializeField]
-    private Slider healthbar;
-    [SerializeField]
-    private TextMeshProUGUI healthText;
+    private HealthBarController healthbar;
     // Start is called before the first frame update
     void Start()
     {
 
         health = 20;
         maxHealth = 20;
-        healthbar.maxValue = maxHealth;
-        healthbar.value = health;
-        healthText.text = health + "/" + maxHealth;
+        healthbar.setMaxHealth(maxHealth);
+        healthbar.setHealth(health);
 
         rB = GetComponent<Rigidbody2D>();
 
@@ -55,6 +51,10 @@ public class PlayerController : MonoBehaviour
         if (allowFire && Input.GetMouseButton(0))
         {
             StartCoroutine("FireBullet");
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            takeDamage(2);
         }
     }
     public GameObject GetPooledObject()
@@ -108,11 +108,6 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(float damage)
     {
         health -= damage;
-        healthbar.value = health;
-        healthText.text = health + "/" + maxHealth;
-    }
-    public void setHealth()
-    {
-
+        healthbar.setHealth(health);
     }
 }

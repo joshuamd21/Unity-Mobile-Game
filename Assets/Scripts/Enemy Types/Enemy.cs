@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damage = 5;
+        damage = 1;
         health = 10;
     }
     protected virtual void movement()
