@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour
     {
         Vector2 toPlayer = (player.transform.position - transform.position).normalized;
         rB.AddForce(toPlayer * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
-        transform.right = player.transform.position - transform.position;
+        transform.up = player.transform.position - transform.position;
     }
     protected virtual void attack()
     {

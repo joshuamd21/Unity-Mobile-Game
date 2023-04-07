@@ -44,7 +44,7 @@ public class RangedEnemy : Enemy
         float playerDistance = Vector2.Distance(player.transform.position, transform.position);
         if (allowFire && playerDistance <= targetDistance + slack)
         {
-            StartCoroutine("attack");
+            StartCoroutine("rangedAttack");
         }
     }
 
@@ -63,7 +63,7 @@ public class RangedEnemy : Enemy
         return null;
     }
 
-    private IEnumerator attack()
+    private IEnumerator rangedAttack()
     {
         allowFire = false;
         Vector3 toPlayer = (player.transform.position - transform.position).normalized;
@@ -71,15 +71,15 @@ public class RangedEnemy : Enemy
         if (bullet is not null)
         {
             bullet.SetActive(true);
-            bullet.transform.right = toPlayer;
-            bullet.transform.position = transform.position + toPlayer;
+            bullet.transform.up = toPlayer;
+            bullet.transform.position = transform.position + toPlayer * bullet.GetComponent<BulletController>().getRadius();
         }
         yield return new WaitForSeconds(rateOfFire);
         allowFire = true;
     }
     protected override void movement()
     {
-        transform.right = player.transform.position - transform.position;
+        transform.up = player.transform.position - transform.position;
         float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
         Vector2 toPlayer = (player.transform.position - transform.position).normalized;
         if (distToPlayer > targetDistance)

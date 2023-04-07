@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private float speed = 10;
     private float maginitude = 100;
     private float rotationSpeed = 360;
-    private float radius = 2f;
     private Rigidbody2D rB;
     private bool allowFire = true;
     private float rateOfFire = 0.5f;
@@ -99,8 +98,8 @@ public class PlayerController : MonoBehaviour
         if (bullet is not null)
         {
             bullet.SetActive(true);
-            bullet.transform.right = toMouse;
-            bullet.transform.position = transform.position + toMouse * radius;
+            bullet.transform.up = toMouse;
+            bullet.transform.position = transform.position + toMouse * bullet.GetComponent<BulletController>().getRadius();
         }
         yield return new WaitForSeconds(rateOfFire);
         allowFire = true;
