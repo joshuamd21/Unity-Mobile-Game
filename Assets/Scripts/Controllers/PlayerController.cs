@@ -1,30 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private List<GameObject> bullets;
     private GameObject bulletHolder;
+    public GameObject bulletPooled;
     private int maxBullets = 20;
+    private float maxHealth;
     private float health;
     private float damage;
     private float speed = 10;
     private float maginitude = 100;
     private float rotationSpeed = 360;
-    [SerializeField]
-    private float radius;
+    private float radius = 1.5f;
     private Rigidbody2D rB;
-    public GameObject bulletPooled;
     private bool allowFire = true;
     private float rateOfFire = 0.5f;
-
+    [SerializeField]
+    private HealthBarController healthbar;
     // Start is called before the first frame update
     void Start()
     {
+
+        health = 20;
+        maxHealth = 20;
+        healthbar.setMaxHealth(maxHealth);
+        healthbar.setHealth(health);
+
         rB = GetComponent<Rigidbody2D>();
-        bulletHolder = GameObject.Find("BulletHolder");
+
         // Loop through list of pooled objects,deactivating them and adding them to the list 
+        bulletHolder = GameObject.Find("BulletHolder");
         bullets = new List<GameObject>();
         for (int i = 0; i < maxBullets; i++)
         {
@@ -42,6 +51,10 @@ public class PlayerController : MonoBehaviour
         if (allowFire && Input.GetMouseButton(0))
         {
             StartCoroutine("FireBullet");
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            takeDamage(2);
         }
     }
     public GameObject GetPooledObject()
@@ -91,5 +104,10 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(rateOfFire);
         allowFire = true;
+    }
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+        healthbar.setHealth(health);
     }
 }
