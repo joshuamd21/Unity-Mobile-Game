@@ -15,15 +15,15 @@ public class RangedEnemy : Enemy
     private int maxBullets = 5;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         damage = 5;
         health = 10;
         speed = 6;
         targetDistance = 7;
         slack = 0.5f;
-        player = GameObject.Find("Player");
-        rB = GetComponent<Rigidbody2D>();
+
 
         bulletHolder = new GameObject(gameObject.name + "Holder");
         // Loop through list of pooled objects,deactivating them and adding them to the list 
@@ -44,7 +44,7 @@ public class RangedEnemy : Enemy
         float playerDistance = Vector2.Distance(player.transform.position, transform.position);
         if (allowFire && playerDistance <= targetDistance + slack)
         {
-            StartCoroutine("attack");
+            StartCoroutine("rangedAttack");
         }
     }
 
@@ -63,7 +63,7 @@ public class RangedEnemy : Enemy
         return null;
     }
 
-    private IEnumerator attack()
+    private IEnumerator rangedAttack()
     {
         allowFire = false;
         Vector3 toPlayer = (player.transform.position - transform.position).normalized;
@@ -71,15 +71,15 @@ public class RangedEnemy : Enemy
         if (bullet is not null)
         {
             bullet.SetActive(true);
-            bullet.transform.right = toPlayer;
-            bullet.transform.position = transform.position + toPlayer;
+            bullet.transform.up = toPlayer;
+            bullet.transform.position = transform.position + toPlayer * bullet.GetComponent<BulletController>().getRadius();
         }
         yield return new WaitForSeconds(rateOfFire);
         allowFire = true;
     }
     protected override void movement()
     {
-        transform.right = player.transform.position - transform.position;
+        transform.up = player.transform.position - transform.position;
         float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
         Vector2 toPlayer = (player.transform.position - transform.position).normalized;
         if (distToPlayer > targetDistance)

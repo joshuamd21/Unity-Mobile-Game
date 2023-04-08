@@ -7,17 +7,24 @@ public class Spawns : Enemy
     private float aggroDistance = 12;
     private bool aggroed = false;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        speed = 6;
-        player = GameObject.Find("Player");
-        rB = GetComponent<Rigidbody2D>();
+        base.Start();
+        setDefaultValues(6, 2, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
+    }
+    protected override void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            attack();
+            gameObject.SetActive(false);
+        }
     }
 
     protected override void movement()

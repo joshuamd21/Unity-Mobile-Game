@@ -12,8 +12,9 @@ public class SpawnerEnemy : Enemy
     private float spawnRate = 2f;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        setDefaultValues(0, 0, 20);
         // Loop through list of pooled objects,deactivating them and adding them to the list 
         Spawns = new List<GameObject>();
         for (int i = 0; i < maxSpawns; i++)

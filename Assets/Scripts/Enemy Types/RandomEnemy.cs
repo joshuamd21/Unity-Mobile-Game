@@ -7,10 +7,10 @@ public class RandomEnemy : Enemy
     private float timeInDirection;
     private Vector2 movementDirection;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        speed = 3;
-        rB = GetComponent<Rigidbody2D>();
+        base.Start();
+        setDefaultValues(3, 2, 10);
         randomDirection();
     }
 
@@ -25,7 +25,7 @@ public class RandomEnemy : Enemy
         rB.AddForce(movementDirection * Time.deltaTime * speed * magnitude, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("xWall"))
         {
