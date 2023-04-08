@@ -15,15 +15,15 @@ public class RangedEnemy : Enemy
     private int maxBullets = 5;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         damage = 5;
         health = 10;
         speed = 6;
         targetDistance = 7;
         slack = 0.5f;
-        player = GameObject.Find("Player");
-        rB = GetComponent<Rigidbody2D>();
+
 
         bulletHolder = new GameObject(gameObject.name + "Holder");
         // Loop through list of pooled objects,deactivating them and adding them to the list 

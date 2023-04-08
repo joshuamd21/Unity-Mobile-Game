@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TankEnemy : Enemy
 {
-    void Start()
+    protected override void Start()
     {
-        speed = 2;
-        player = GameObject.Find("Player");
-        rB = GetComponent<Rigidbody2D>();
+        base.Start();
+        setDefaultValues(2, 8, 20);
     }
 
     // Update is called once per frame

@@ -11,10 +11,20 @@ public abstract class Enemy : MonoBehaviour
     protected float damage;
     protected float health;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        damage = 1;
-        health = 10;
+        player = GameObject.Find("Player");
+        rB = GetComponent<Rigidbody2D>();
+    }
+    protected virtual void setUpHealthBar()
+    {
+
+    }
+    protected virtual void setDefaultValues(float spd, float dmg, float hp)
+    {
+        speed = spd;
+        damage = dmg;
+        health = hp;
     }
     protected virtual void movement()
     {
@@ -26,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
     {
         player.GetComponent<PlayerController>().takeDamage(damage);
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
