@@ -10,15 +10,16 @@ public abstract class Enemy : MonoBehaviour
     protected float magnitude { get; } = 100;
     protected float damage;
     protected float health;
+    protected HealthBarController healthBar;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         player = GameObject.Find("Player");
         rB = GetComponent<Rigidbody2D>();
     }
-    protected virtual void setUpHealthBar()
+    public void setUpHealthBar(GameObject healthbar)
     {
-
+        healthBar = healthbar.GetComponent<HealthBarController>();
     }
     protected virtual void setDefaultValues(float spd, float dmg, float hp)
     {

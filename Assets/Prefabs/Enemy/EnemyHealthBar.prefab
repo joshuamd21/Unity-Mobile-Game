@@ -344,6 +344,7 @@ MonoBehaviour:
     m_Mode: 1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  target: {fileID: 0}
 --- !u!1 &8414751547351009854
 GameObject:
   m_ObjectHideFlags: 0

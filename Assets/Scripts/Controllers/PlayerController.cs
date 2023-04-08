@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool allowFire = true;
     private float rateOfFire = 0.5f;
     [SerializeField]
-    private HealthBarController healthbar;
+    private PlayerHealthBarController healthbar;
     // Start is called before the first frame update
     void Start()
     {
